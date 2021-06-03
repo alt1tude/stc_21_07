@@ -3,20 +3,20 @@ import java.util.Arrays;
 
 public class Main {
 
-    public static void makeBubbleSort (int[] array) {
+    public static void makeBubbleSort(int[] array) {
         int temp;
         for (int j = 1; j < array.length; ++j) {
             for (int i = 0; i < array.length - 1; ++i) {
-                if (array[i] > array[i+1]) {
+                if (array[i] > array[i + 1]) {
                     temp = array[i];
-                    array[i] = array[i+1];
-                    array[i+1] = temp;
+                    array[i] = array[i + 1];
+                    array[i + 1] = temp;
                 }
             }
         }
     }
 
-    public static void makeSwapMinMax (int[] array) {
+    public static void makeSwapMinMax(int[] array) {
         int min = array[0], max = array[0];
         int positionOfMin = 0, positionOfMax = 0;
         for (int i = 0; i < array.length; ++i) {
@@ -81,7 +81,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int[] array = new int[n];
-        for(int i = 0; i < array.length; ++i) {
+        for (int i = 0; i < array.length; ++i) {
             System.out.printf("Enter the %d value:\n", i);
             array[i] = scanner.nextInt();
         }

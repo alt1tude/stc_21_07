@@ -1,8 +1,8 @@
 import java.util.Arrays;
 public class Main {
-
+    // работает, только для чисел из разряд единиц и десяток
     public static void main(String[] args) {
-        int[] array = {11, 91}; // работает, только для чисел из разряд единиц и десяток
+        int[] array = {11, 91};
         System.out.print("Array: ");
         System.out.println(Arrays.toString(array));
         int number = 0;
