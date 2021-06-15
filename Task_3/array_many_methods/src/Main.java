@@ -16,6 +16,14 @@ public class Main {
         }
     }
 
+    public static int[] copyOfArray(int[] array) {
+//      int[] newCopyArray = Arrays.copyOf(array, array.length);
+        int[] newCopyArray = new int[array.length];
+        System.arraycopy(array, 0, newCopyArray, 0,
+                Math.min(array.length, newCopyArray.length));
+        return newCopyArray;
+    }
+
     public static void makeSwapMinMax(int[] array) {
         int min = array[0], max = array[0];
         int positionOfMin = 0, positionOfMax = 0;
@@ -62,16 +70,21 @@ public class Main {
         return sumElements;
     }
 
-    //только для массива, состоящего из чисел из разряда единиц и десяток
     public static int convertArrayToInt(int[] array) {
         int nb = 0;
-        for (int i : array) {
-            if (i < 10) {
-                nb = nb * 10;
+        int multiplier = 1;
+        for (int i = array.length - 1; i >= 0; --i) {
+            if (array[i] != 0) {
+                for (int decomposeNb = array[i]; decomposeNb != 0; decomposeNb /= 10) {
+                    int remainder = decomposeNb % 10;
+                    if (remainder != 0) {
+                        nb = nb + remainder * multiplier;
+                    }
+                    multiplier *= 10;
+                }
             } else {
-                nb = nb * 100;
+                multiplier *= 10;
             }
-            nb = nb + i;
         }
         return nb;
     }
@@ -85,6 +98,8 @@ public class Main {
             System.out.printf("Enter the %d value:\n", i);
             array[i] = scanner.nextInt();
         }
+        int[] newCopyArray = copyOfArray(array);
+
         System.out.print("Your entered array: ");
         System.out.println(Arrays.toString(array));
 
@@ -95,15 +110,15 @@ public class Main {
         double resultAvg = getAvgElementsOfArray(resultSum, n);
         System.out.println("Avg value of array = " + resultAvg);
 
-        makeSwapMinMax(array);
-        System.out.print("Array after swap min and max: ");
-        System.out.println(Arrays.toString(array));
+        int arrayToInt = convertArrayToInt(newCopyArray);
+        System.out.println("Original array to int = " + arrayToInt);
+
+        makeSwapMinMax(newCopyArray);
+        System.out.print("Original array after swap min and max: ");
+        System.out.println(Arrays.toString(newCopyArray));
 
         makeBubbleSort(array);
         System.out.print("Array after bubble sort: ");
         System.out.println(Arrays.toString(array));
-
-        int arrayToInt = convertArrayToInt(array);
-        System.out.println("Array to int = " + arrayToInt);
     }
 }
