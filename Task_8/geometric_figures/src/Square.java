@@ -1,14 +1,19 @@
 public class Square extends Rectangle {
-    public Square(Point center, double sideA, double sideB) {
-        super(center, sideA, sideB);
+    public Square(Point center, double sideA) {
+        super(center, sideA, sideA);
     }
 
-    public Square(double sideA, double sideB) {
-        super(sideA, sideB);
+    public Square(double sideA) {
+        super(sideA, sideA);
+    }
+
+    @Override
+    public double perimeter() {
+        return 4 * getSideA();
     }
 
     @Override
     public double square() {
-        return super.square();
+        return Math.pow(getSideA(),2);
     }
 }

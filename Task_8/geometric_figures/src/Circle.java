@@ -9,8 +9,12 @@ public class Circle extends Ellipse {
     }
 
     @Override
+    public double perimeter() {
+        return 2 * Math.PI * getSideA();
+    }
+
+    @Override
     public double square() {
-        return 0;
-//        return Math.PI * Math.pow(radius, 2);
+      return Math.PI * Math.pow(getSideA(), 2);
     }
 }

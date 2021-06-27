@@ -9,11 +9,11 @@ public class Rectangle extends  Figure{
 
     @Override
     public double perimeter() {
-        return 0;
+        return 2 * (getSideA() + getSideB());
     }
 
     @Override
     public double square() {
-        return 0;
+        return getSideA() * getSideB();
     }
 }
