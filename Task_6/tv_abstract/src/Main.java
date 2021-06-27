@@ -2,7 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
         TV tv = new TV("Toshiba");
-        RemoteController remoteController = new RemoteController("RC-Toshiba");
+        RemoteController remoteController = new RemoteController("RC-Toshiba", tv);
 
         Program program1 = new Program("Махинаторы");
         Program program2 = new Program("Как_это_устроено?");
@@ -18,25 +18,26 @@ public class Main {
         Channel channel4 = new Channel("Че");
         Channel channel5 = new Channel("Discovery");
 
+        Channel[] channels = {channel1, channel2, channel3, channel4, channel5};
+
         //добавили все программы в канал Discovery
-        for(int i = 0; i < programs.length; ++i) {
+        for (int i = 0; i < programs.length; ++i) {
             channel5.addProgram(programs[i]);
         }
 
         //получаем рандомную программу с канала Discovery
-        for(int i = 0; i < programs.length; ++i) {
-            System.out.println(channel5.randomProgram().getName());
+        //в других каналах пока нет программ, выводится только System.err-поток
+        channel5.randomProgram();
+        System.out.println("-----");
+        //добавили все каналы в ТВ
+        for (int i = 0; i < channels.length; ++i) {
+            tv.addChannel(channels[i]);
         }
 
-        channel5.printProgram(channel5.getName(), program1);
-
-        tv.addChannel(channel1);
-        tv.addChannel(channel2);
-        tv.addChannel(channel3);
-        tv.addChannel(channel4);
-        tv.addChannel(channel5);
-
-        System.out.println(tv.getChannelRandomPgm().getName());
-
+        //обращаемся к конкретному каналу ТВ (Discovery), для показа случайной программы
+        //в других каналах пока нет программ, выводится только System.err-поток
+        tv.showChannelWithRandomPgm(4);
+        System.out.println("+++++");
+        remoteController.showChannelWithNumber(4);
     }
 }

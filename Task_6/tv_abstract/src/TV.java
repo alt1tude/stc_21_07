@@ -1,37 +1,33 @@
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Arrays;
 
 public class TV {
-    private static final int MAX_TV_CHANNEL = 5;
-
     private String name;
 
     //массив для хранения каналов
     private Channel[] channels;
     private int channelsCount;
-
-    private RemoteController remoteController; // ссылка на пульт
-
-    public void setRemoteController(RemoteController remoteController) {
-        this.remoteController = remoteController;
-    }
+    private int capacityForChannel = 5;
 
     public TV(String name) {
         this.name = name;
-        this.channels = new Channel[MAX_TV_CHANNEL];
+        this.channels = new Channel[capacityForChannel];
     }
 
     public void addChannel(Channel channel) {
-        if(channelsCount < MAX_TV_CHANNEL) {
-            channels[channelsCount] = channel;
-            ++channelsCount;
-            System.out.println();
-        } else {
-            System.err.println("Кончились кнопки на пульте");
+        if (channelsCount >= capacityForChannel) {
+            capacityForChannel = capacityForChannel + capacityForChannel / 2;
+            channels = Arrays.copyOf(channels, capacityForChannel);
         }
+        channels[channelsCount] = channel;
+        ++channelsCount;
     }
 
-    public Channel getChannelRandomPgm() {
-//        return channels[ThreadLocalRandom.current().nextInt(channelsCount)];
+    public void showChannelWithRandomPgm(int number) {
+        if (number < 0 || number >= channelsCount) {
+            System.err.println("Канала " + number + " не существует");
+        }
+        Channel channel = channels[number];
+        System.out.print("На канале " + channel.getName() + " ");
+        channel.randomProgram();
     }
-
 }

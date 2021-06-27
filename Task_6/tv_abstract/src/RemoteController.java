@@ -1,20 +1,20 @@
 public class RemoteController {
     private String name;
 
-    public RemoteController(String name) {
-        this.name = name;
-    }
-
     private TV tv; // ссылка на тв
+    private Channel channel;
 
-    public void tvOn(TV tv) {
+    public RemoteController(String name, TV tv) {
+        this.name = name;
         this.tv = tv;
-        //пульт запоминает свой телевизор
-        tv.setRemoteController(this);
     }
 
-    private void getChannelNumber() {
+    public void setTv(TV tv) {
+        this.tv = tv;
+    }
 
+    public void showChannelWithNumber(int number) {
+        tv.showChannelWithRandomPgm(number);
     }
 
 }
