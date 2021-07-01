@@ -21,7 +21,7 @@ public class MainEquals {
 //        System.out.println(allEquals("Hello", "Bye", "Hello"));
 
         // с переопределенным методом equals, которые принимает Human не работает(дает false)
-        // потому что в методе allEquals была вызвана реализация стандартная реализация из Object
+        // потому что в методе allEquals была вызвана стандартная реализация из Object
         System.out.println(allEquals(fedya, anotherFedya, anotherFedya1, anotherFedya2));
 
     }
