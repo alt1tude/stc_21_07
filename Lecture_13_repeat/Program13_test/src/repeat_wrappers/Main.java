@@ -22,6 +22,5 @@ public class Main {
         // например, тут можно класть сразу числа, они сразу будут преобразованы в значения типа int
         List<Integer> integerList = new ArrayList<>();
         integerList.add(5);
-
     }
 }
